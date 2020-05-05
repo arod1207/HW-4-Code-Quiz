@@ -8,23 +8,22 @@
     <title>Code Quiz</title>
 </head>
 <body>
- <header class="header-start">
-     <h1>Code Quiz</h1>
-     <h3>You have 5 minuetes to finish the Quiz!</h3>
-     <p>Are you ready to start?</p>
-     <button class="start-btn">Start Quiz</button>
- </header>
- <main class=askQuestion>
-     <div class="questions"><span></span>
-         <ul style="display:none" class="answerButtons">
-             <li><button class="btn-1"></button></li>
-             <li><button class="btn-2"></button></li>
-             <li><button class="btn-3"></button></li>
-             <li><button class="btn-4"></button></li>
-         </ul>
-     </div>
- </main>
-
-    <script src="/main.js"></script>
-</body>
-</html>
+    <div class="quiz-container">
+        <div><button class="startBtn"> Start Quiz! </button></div>   
+        <div id="quiz" style="display:none;">
+            <div id="question"><p> Quesiton </p></div>
+        <div id="answers">
+            <div class="answer"><button id="button1"> A </button></div>
+            <div class="answer"><button id="button2"> A </button></div>
+            <div class="answer"><button id="button3"> A </button></div>
+            <div class="answer"><button id="button4"> A </button></div>
+            <div id="timer">
+                <div id="counter"> 6</div>
+            </div>
+        </div>
+        </div>
+        <div id="score" style="display:none">Score</div>
+    </div>
+    <script src="main.js"></script>
+</body> 
+</html>  
