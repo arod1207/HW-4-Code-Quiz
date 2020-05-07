@@ -14,6 +14,7 @@ var timer = document.querySelector('#timer');
 var score = 0;
 var startTime = 1;
 var timeLeft = startTime * 60;
+var stopTime;
 
 
 
@@ -67,7 +68,7 @@ function renderQuestion(){
     button3.innerHTML = questionsToAsk.choice3;
     button4.innerHTML = questionsToAsk.choice4;
 
-    console.log(questionsToAsk)
+    
 } 
 
 startBtn.addEventListener('click', startQuiz);
@@ -77,12 +78,12 @@ function startQuiz(){
     renderQuestion();
     quiz.style.display = "block";
     timerContainer.style.display = "block";
-    setInterval(gameTimer, 1000);
+    stopTime = setInterval(gameTimer, 1000);
     timer.innerHTML = timeLeft;
     
 };
 
-// TRYING DIFFERENT WAYS TO CHECK THAT IF ITS TRUE OR NOT //
+// Adding click function and assigning a letter to check if answer is correct in the array//
 button1.addEventListener('click', function() { checkAnswer("A") } );
 button2.addEventListener('click', function() { checkAnswer("B") } );
 button3.addEventListener('click', function() { checkAnswer("C") } );
@@ -108,12 +109,16 @@ function checkAnswer(answer){
         highScore();
     }
 }
+
+
 function highScore(){
     document.body.style.background = "pink"
     quiz.style.display = "none";
     scoreContainer.style.display = "block";
     displayScore.innerHTML = score;
 }
+
+
 
 function gameTimer(){
    var minutes = Math.floor(timeLeft / 60);
@@ -122,10 +127,8 @@ function gameTimer(){
    timeLeft--;
    if (timeLeft == 0){
        alert("Time's UP!")
+       clearInterval(stopTime);
    }
 }
 
-// }
-// function restartGame(){
-//     if
-// }
+
