@@ -6,8 +6,14 @@ var button1 = document.querySelector('#button1');
 var button2 = document.querySelector('#button2');
 var button3 = document.querySelector('#button3');
 var button4 = document.querySelector('#button4');
-var socre = document.querySelector('#score');
+var displayScore = document.querySelector('#displayScore');
+var inGameTimer = document.querySelector('#inGameTimer');
+var scoreContainer = document.querySelector('#score-container');
+var timerContainer = document.querySelector('#timer-container');
+var timer = document.querySelector('#timer');
 var score = 0;
+var startTime = 1;
+var timeLeft = startTime * 60;
 
 
 
@@ -62,7 +68,7 @@ function renderQuestion(){
     button4.innerHTML = questionsToAsk.choice4;
 
     console.log(questionsToAsk)
-}
+} 
 
 startBtn.addEventListener('click', startQuiz);
 
@@ -70,6 +76,10 @@ function startQuiz(){
     startBtn.style.display = "none";
     renderQuestion();
     quiz.style.display = "block";
+    timerContainer.style.display = "block";
+    setInterval(gameTimer, 1000);
+    timer.innerHTML = timeLeft;
+    
 };
 
 // TRYING DIFFERENT WAYS TO CHECK THAT IF ITS TRUE OR NOT //
@@ -84,6 +94,7 @@ function checkAnswer(answer){
         console.log("correct")
         document.body.style.background = "green";
         score++
+        console.log(score);
     } else {
         console.log("wrong")
         document.body.style.background = "red";
@@ -98,8 +109,23 @@ function checkAnswer(answer){
     }
 }
 function highScore(){
+    document.body.style.background = "pink"
     quiz.style.display = "none";
-    score.innerHTML = score
+    scoreContainer.style.display = "block";
+    displayScore.innerHTML = score;
 }
 
+function gameTimer(){
+   var minutes = Math.floor(timeLeft / 60);
+   var seconds = timeLeft % 60;
+   timer.innerHTML = `${minutes}:${seconds}`;
+   timeLeft--;
+   if (timeLeft == 0){
+       alert("Time's UP!")
+   }
+}
 
+// }
+// function restartGame(){
+//     if
+// }
