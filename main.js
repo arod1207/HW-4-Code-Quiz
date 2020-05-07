@@ -10,10 +10,12 @@ var displayScore = document.querySelector('#displayScore');
 var inGameTimer = document.querySelector('#inGameTimer');
 var scoreContainer = document.querySelector('#score-container');
 var timerContainer = document.querySelector('#timer-container');
+var restartBtn = document.querySelector('#restart');
 var timer = document.querySelector('#timer');
+var questionCount = 0;
 var score = 0;
 var startTime = 1;
-var timeLeft = startTime * 60;
+var timeLeft = startTime * 5;
 var stopTime;
 
 
@@ -21,7 +23,7 @@ var stopTime;
 
 var quizQuestions = [
     {
-        question : "This is question 1?",
+        question : "whats the capital of texas?",
         choice1 : "Correct",
         choice2 : "Wrong",
         choice3 : "Wrong",
@@ -91,24 +93,28 @@ button4.addEventListener('click', function() { checkAnswer("D") } );
 
 // CHECK ANSWER //
 function checkAnswer(answer){
-    if(answer == quizQuestions[currentQuestion].correct){
+   
+     if(answer == quizQuestions[currentQuestion].correct){
         console.log("correct")
         document.body.style.background = "green";
         score++
         console.log(score);
-    } else {
+    } else if (answer != quizQuestions[currentQuestion].correct) {
         console.log("wrong")
         document.body.style.background = "red";
-         
-    }
-    var questionCount = 0;
-    if(currentQuestion < lastQuestion){
+    }else if  (timeLeft === 3){
+        highScore();
+    }     
+     
+    if (currentQuestion < lastQuestion) {
         currentQuestion++
-        renderQuestion()
+        renderQuestion();
     }else{
         highScore();
     }
 }
+console.log(timeLeft)
+
 
 
 function highScore(){
@@ -125,10 +131,13 @@ function gameTimer(){
    var seconds = timeLeft % 60;
    timer.innerHTML = `${minutes}:${seconds}`;
    timeLeft--;
-   if (timeLeft == 0){
-       alert("Time's UP!")
+   if (timeLeft == 0 || currentQuestion == lastQuestion){
+    highScore()
        clearInterval(stopTime);
    }
 }
 
+restartBtn.addEventListener('click', function() {
+    document.location.href = '';
+});
 
