@@ -10,56 +10,58 @@ var socre = document.querySelector('#score');
 var score = 0;
 
 
+
+
 var quizQuestions = [
     {
         question : "This is question 1?",
-        answer1 : "Correct",
-        answer2 : "wrong",
-        answer3 : "Wrong",
-        answer4 : "Wrong",
+        choice1 : "Correct",
+        choice2 : "Wrong",
+        choice3 : "Wrong",
+        choice4 : "Wrong",
         correct : "A",
     },
     {
         question : "This is question 2?",
-        answer1 : "Wrong",
-        answer2 : "Correct",
-        answer3 : "Wrong",
-        answer4 : "Wrong",
-        correWrong : "B",
+        choice1 : "Wrong",
+        choice2 : "Correct",
+        choice3 : "Wrong",
+        choice4 : "Wrong",
+        correct : "B",
     },
     {
         question : "This is question 3?",
-        answer1 : "Wrong",
-        answer2 : "Wrong",
-        answer3 : "Correct",
-        answer4 : "Wrong",
-        correWrong : "C",
+        choice1 : "Wrong",
+        choice2 : "Wrong",
+        choice3 : "Correct",
+        choice4 : "Wrong",
+        correct : "C",
     },
     {
         question : "This is question 4?",
-        answer1 : "Wrong",
-        answer2 : "Wrong",
-        answer3 : "Wrong",
-        answer4 : "Correct",
+        choice1 : "Wrong",
+        choice2 : "Wrong",
+        choice3 : "Wrong",
+        choice4 : "Correct",
         correct : "D",
-    },
+    }
 ]
 
 
 
 var lastQuestion = quizQuestions.length - 1;
-var runningQuestion = 0;
+var currentQuestion = 0;
 
 function renderQuestion(){
-    var questionsToAsk = quizQuestions[runningQuestion];
+    var questionsToAsk = quizQuestions[currentQuestion];
 
     question.innerHTML = "<p>" + questionsToAsk.question + "</p>";
-    button1.innerHTML = questionsToAsk.answer1;
-    button2.innerHTML = questionsToAsk.answer2;
-    button3.innerHTML = questionsToAsk.answer3;
-    button4.innerHTML = questionsToAsk.answer4;
+    button1.innerHTML = questionsToAsk.choice1;
+    button2.innerHTML = questionsToAsk.choice2;
+    button3.innerHTML = questionsToAsk.choice3;
+    button4.innerHTML = questionsToAsk.choice4;
 
-    console.log(questionsToAsk.answer1)
+    console.log(questionsToAsk)
 }
 
 startBtn.addEventListener('click', startQuiz);
@@ -70,20 +72,34 @@ function startQuiz(){
     quiz.style.display = "block";
 };
 
+// TRYING DIFFERENT WAYS TO CHECK THAT IF ITS TRUE OR NOT //
+button1.addEventListener('click', function() { checkAnswer("A") } );
+button2.addEventListener('click', function() { checkAnswer("B") } );
+button3.addEventListener('click', function() { checkAnswer("C") } );
+button4.addEventListener('click', function() { checkAnswer("D") } );
+
 // CHECK ANSWER //
 function checkAnswer(answer){
-    if(answer == quizQuestions[runningQuestion].correct){
+    if(answer == quizQuestions[currentQuestion].correct){
+        console.log("correct")
+        document.body.style.background = "green";
         score++
     } else {
+        console.log("wrong")
+        document.body.style.background = "red";
          
     }
+    var questionCount = 0;
+    if(currentQuestion < lastQuestion){
+        currentQuestion++
+        renderQuestion()
+    }else{
+        highScore();
+    }
 }
-
-// function renderCounter() {
-//     let count = 0;
-//     var quizTime = 100; seconds
-//     if(count <= quiztime){
-//         counter.innerHTML = count
-//     }
+function highScore(){
+    quiz.style.display = "none";
+    score.innerHTML = score
+}
 
 
