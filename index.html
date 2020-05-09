@@ -11,9 +11,9 @@
 <body>
     
     <div id="start-container" style="display: block">
-        <div><button class="btn btn-primary" id="startBtn">Start Quiz!</button></div>   
+        <div id="title" style="display: block"><h1>Are you ready to start the quiz</h1></div>
+        <div><button class="btn btn-primary startButton" id="startBtn">Start Quiz!</button></div>   
         <div id="quiz-container" style="display: none";>
-            
             <div id="question"><p></p></div>
         <div id="answers">
             <div><button class="btn btn-primary" id="button1"></button></div>
@@ -36,8 +36,8 @@
     <div id="highScore-container" style="display: none;">
         <ul class="highScore" id="quizScores">
         </ul>
-        <button class="btn btn-warning" id="restartBtn1">Restart</button>
-        <button class="btn btn-danger" id="clearScoresBtn">Clear Scores</button>
+        <button class="btn btn-warning endGameBtn" id="restartBtn1">Restart</button>
+        <button class="btn btn-danger endGameBtn" id="clearScoresBtn">Clear Scores</button>
         
     </div>
     <div id="gameOver-container" style="display:none"><h1>Game Over</h1>

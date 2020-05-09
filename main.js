@@ -6,7 +6,8 @@ var button3 = document.querySelector('#button3');
 var button4 = document.querySelector('#button4');
 var restartBtn1 = document.querySelector('#restartBtn1');
 var restartBtn2 = document.querySelector('#restartBtn2');
-var clearBtn = document.querySelector('#clearScoresBtn')
+var clearBtn = document.querySelector('#clearScoresBtn');
+var title = document.querySelector('#title');
 var displayScore = document.querySelector('#displayScore');
 var scoreContainer = document.querySelector('#score-container');
 var quizContainer = document.querySelector('#quiz-container');
@@ -54,7 +55,7 @@ var quizQuestions = [
         choice1 : "Albany",
         choice2 : "Buffalo",
         choice3 : "Rochester",
-        choice4 : "Correct",
+        choice4 : "Queens",
         correct : "A",
     }
 ]
@@ -81,6 +82,7 @@ function renderQuestion(){
 startBtn.addEventListener('click', startQuiz);
 
 function startQuiz(){
+    title.style.display = "none";
     startBtn.style.display = "none";
     document.body.style.background = 'blue';
     renderQuestion();
@@ -130,12 +132,8 @@ function finaleScore(){
     quizContainer.style.display = "none";
     scoreContainer.style.display = "block";
     highScoreContainer.style.display = 'none';
-    displayScore.innerHTML = score;
-    
+    displayScore.innerHTML = score; 
 }
-
-  
-  
 
 
 // add highScore
@@ -143,23 +141,24 @@ form.addEventListener('submit', addNames);
 
     function addNames(e) {
     e.preventDefault();
+    // created a variable to take in a new name from the input box //
     var newName = document.querySelector('#names').value;
+    //  created a new list item to place the name in //
     var li = document.createElement('li');
+    // gave it a class name so i can style it in css //
     li.className = 'highScoreList';
+    // added the name into an li //
     li.appendChild(document.createTextNode(newName));
+    // add the 
     quizScores.appendChild(li);
-    // quizScores.innerHTML = `You got ${score} right!`
+    // li.textContent = `${newName} you got ${quizScores} right`
     li.appendChild(document.createTextNode(score));
+    li.textContent = `${newName} you got ${score} right`
+
     highScoreContainer.style.display = 'block';
     scoreContainer.style.display = 'none';
     }
     
-
-
-
-
-
-
 
 // the countdown timer for my game //
 function gameTimer(){
