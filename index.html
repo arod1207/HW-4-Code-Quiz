@@ -2,31 +2,48 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Code Quiz</title>
 </head>
 <body>
-    <div class="quiz-container">
-        <div><button class="startBtn"> Start Quiz! </button></div>   
-        <div id="quiz" style="display:none;">
+    
+    <div id="start-container" style="display: block">
+        <div><button class="btn btn-primary" id="startBtn">Start Quiz!</button></div>   
+        <div id="quiz-container" style="display: none";>
+            
             <div id="question"><p></p></div>
         <div id="answers">
-            <div><button id="button1"></button></div>
-            <div><button id="button2"></button></div>
-            <div><button id="button3"></button></div>
-            <div><button id="button4"></button></div>
-            <div id="timer-container" style="display:none">
-                <div><p id="timer">10:00</p></div>
+            <div><button class="btn btn-primary" id="button1"></button></div>
+            <div><button class="btn btn-primary" id="button2"></button></div>
+            <div><button class="btn btn-primary" id="button3"></button></div>
+            <div><button class="btn btn-primary" id="button4"></button></div>
+            <div id="timer">
+                <div><p id="timer"></p></div>
             </div>
         </div>
         </div>
     </div>
     <div id="score-container" style="display:none">
-        <p id="displayScore">Score</p>
-        <button id="restart">Restart</button>
+        <p id="displayScore"></p>
+       <form id="addName">
+           <input id="names" type="text" placeholder="Name">
+           <input class="btn btn-success" id="submitBtn" type="submit">
+       </form>
     </div>
+    <div id="highScore-container" style="display: none;">
+        <ul class="highScore" id="quizScores">
+        </ul>
+        <button class="btn btn-warning" id="restartBtn1">Restart</button>
+        <button class="btn btn-danger" id="clearScoresBtn">Clear Scores</button>
+        
+    </div>
+    <div id="gameOver-container" style="display:none"><h1>Game Over</h1>
+        <button class="btn btn-warning" id="restartBtn2">Restart</button>
+    </div>
+    
     <script src="main.js"></script>
 </body> 
 </html>  
